@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+	<title>MVC With Burgers!</title>
+	<script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+	{{{ body }}}
+
+	<script>
+		$("body").on("click", "#sub", function (event) {
+
+			event.preventDefault();
+			var burger = {
+				burger_name: $("#input").val().trim()
+			};
+
+			$.post("/api/burgers", burger).then(function (data) {
+				displayBurgers();
+			});
+
+		});
+
+		displayBurgers();
+
+
+		$("body").on("click", ".btn-devour", function (event) {
+			event.preventDefault();
+			var id = $(this).data("id");
+			var burger_name = $(this).data("name");
+			$(".burger" + id).appendTo("#right");
+			$.ajax("/api/burgers/" + burger_name, {
+				type: "PUT"
+			}).then(function () {
+				console.log("updated" + burger_name);
+			})
+		});
+
+		function displayBurgers() {
+			$("#left").empty();
+			$.get("/api/burgers", function (data) {
+				if (data.length !== 0) {
+
+					for (var i = 0; i < data.length; i++) {
+						var devoured = data[i].devoured;
+						var row = $("<div>");
+						row.addClass("burger" + i);
+						row.append("<p>" + data[i].burger_name + "</p>");
+						row.append("<button class=btn-devour type=submit data-id=" + i + " data-name=\"" + data[i].burger_name + "\">DEVOUR IT!!!</button>");
+						if (devoured == 1) {
+							$("#right").prepend(row);
+						} else {
+							$("#left").prepend(row);
+						}
+
+					}
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>

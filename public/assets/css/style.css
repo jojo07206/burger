@@ -1,0 +1,39 @@
+body{
+  background-color: burlywood;
+  align-content: center;
+  margin: auto;
+  justify-content: center;
+  margin-left: 12cm;
+}
+#left{
+background-color: yellow;
+width: 10cm;
+align-content: center;
+float: left;
+margin: 1cm;
+margin-left: -6cm;
+}
+
+#right{
+background-color: blue;
+width: 10cm;
+align-content: center;
+float: left;
+clear: right;
+margin: 1cm;
+font-family: 'Courier New', Courier, monospace;
+}
+
+#input{
+  width: 10cm;
+  height: 5cm;
+}
+
+form {
+  clear: both;
+}
+
+img {
+  height: 4cm;
+  width: 4cm;
+}
