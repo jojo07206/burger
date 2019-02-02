@@ -20,9 +20,11 @@
 			};
 
 			$.post("/api/burgers", burger).then(function (data) {
-				displayBurgers();
-			});
 
+				displayBurgers();
+
+			});
+			$("#input").empty();
 		});
 
 		displayBurgers();
