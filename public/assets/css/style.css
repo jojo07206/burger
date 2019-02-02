@@ -24,6 +24,10 @@ margin: 1cm;
 font-family: 'Courier New', Courier, monospace;
 }
 
+#right button{
+display: none;
+  }
+
 #input{
   width: 10cm;
   height: 5cm;
